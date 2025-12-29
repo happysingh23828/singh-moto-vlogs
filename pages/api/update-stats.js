@@ -6,12 +6,16 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Optional: Check for a secret key for security
+  // Required: Check for a secret key for security
   const authHeader = req.headers.authorization;
   const expectedSecret = process.env.CRON_SECRET_KEY;
 
-  if (expectedSecret && authHeader !== `Bearer ${expectedSecret}`) {
-    return res.status(401).json({ error: 'Unauthorized' });
+  if (!expectedSecret) {
+    return res.status(500).json({ error: 'CRON_SECRET_KEY not configured' });
+  }
+
+  if (!authHeader || authHeader !== `Bearer ${expectedSecret}`) {
+    return res.status(401).json({ error: 'Unauthorized - Invalid or missing CRON_SECRET_KEY' });
   }
 
   try {
