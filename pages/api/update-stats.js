@@ -6,14 +6,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Check if this is a Vercel cron job (internal call)
-  const userAgent = req.headers['user-agent'];
-  const isVercelCron = userAgent && userAgent.includes('vercel-cron');
+  // Check if this is a Vercel cron job via query parameter
+  const cronSecret = req.query.cron_secret;
+  const expectedSecret = process.env.CRON_SECRET_KEY;
 
-  // For external requests, require authentication
+  const isVercelCron = cronSecret === expectedSecret;
+
+  // For external requests, require Bearer token authentication
   if (!isVercelCron) {
     const authHeader = req.headers.authorization;
-    const expectedSecret = process.env.CRON_SECRET_KEY;
 
     if (!expectedSecret) {
       return res.status(500).json({ error: 'CRON_SECRET_KEY not configured' });
