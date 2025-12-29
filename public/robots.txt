@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Block access to API routes and sensitive files
+Disallow: /api/
+Disallow: /.env
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Allow crawling of main content
+Allow: /
+Allow: /data/stats.json
+
+# Sitemap
+Sitemap: https://singhmotovlogs.com/sitemap.xml
