@@ -1,0 +1,77 @@
+name: Update Social Media Stats
+
+on:
+  schedule:
+    # 12 AM IST = 11:30 PM UTC (previous day)
+    - cron: '30 23 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Create .env.local for GitHub Actions
+      run: |
+        echo "YOUTUBE_API_KEY=${{ secrets.YOUTUBE_API_KEY }}" >> .env.local
+        echo "YOUTUBE_CHANNEL_ID=${{ secrets.YOUTUBE_CHANNEL_ID }}" >> .env.local
+        echo "META_GRAPH_TOKEN=${{ secrets.META_GRAPH_TOKEN }}" >> .env.local
+        echo "IG_BUSINESS_ID=${{ secrets.IG_BUSINESS_ID }}" >> .env.local
+
+    - name: Get current timestamp
+      id: timestamp
+      run: echo "timestamp=$(date -u +'%Y-%m-%dT%H:%M:%S.%3NZ')" >> $GITHUB_OUTPUT
+
+    - name: Backup current stats
+      run: cp data/stats.json data/stats.backup.json
+
+    - name: Update stats
+      run: npm run update-stats
+
+    - name: Check if stats were updated
+      id: check-changes
+      run: |
+        if cmp -s data/stats.json data/stats.backup.json; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+          echo "📊 Stats unchanged, skipping commit"
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "📊 Stats updated successfully!"
+        fi
+
+    - name: Commit and push changes
+      if: steps.check-changes.outputs.changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/stats.json
+        git commit -m "📊 Auto-update social media stats
+
+        Updated at: ${{ steps.timestamp.outputs.timestamp }}
+        - YouTube subscribers and views
+        - Instagram followers and posts"
+        git push
+
+    - name: Clean up backup
+      if: always()
+      run: rm -f data/stats.backup.json
+
+    - name: Notify on failure
+      if: failure()
+      run: |
+        echo "❌ Stats update failed"
+        echo "Check the logs for more details"
