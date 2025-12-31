@@ -6,6 +6,11 @@ on:
     - cron: '30 23 * * *'
   workflow_dispatch: # Allow manual trigger
 
+# Allow GitHub Actions to push to repository
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update-stats:
     runs-on: ubuntu-latest
@@ -15,6 +20,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0  # Fetch full history for proper commits
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -59,12 +65,22 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add data/stats.json
+
+        # Check if there are any changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+          exit 0
+        fi
+
+        # Pull latest changes to avoid conflicts
+        git pull --rebase origin master || git pull --rebase origin main || true
+
         git commit -m "📊 Auto-update social media stats
 
         Updated at: ${{ steps.timestamp.outputs.timestamp }}
         - YouTube subscribers and views
         - Instagram followers and posts"
-        git push
+        git push origin HEAD:main || git push origin HEAD:master
 
     - name: Clean up backup
       if: always()
