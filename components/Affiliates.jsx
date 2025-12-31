@@ -13,34 +13,37 @@ export default function Affiliates({ affiliates }) {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-dark)', color: 'var(--text-light)' }}>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20">
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      {/* Compact Hero Section */}
+      <section className="relative overflow-hidden py-12">
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-8 shadow-lg" style={{ backgroundColor: 'var(--accent)' }}>
-              <span className="text-3xl">🏍️</span>
-            </div>
-            <h1 className="text-6xl sm:text-7xl font-bold mb-6 tracking-tight" style={{ color: 'var(--accent)' }}>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-3 tracking-tight" style={{ color: 'var(--accent)' }}>
               GEAR
             </h1>
-            <p className="text-xl max-w-3xl mx-auto leading-relaxed font-medium" style={{ color: 'var(--text-muted)' }}>
-              A curated collection of equipment and tools I personally use and recommend for motorcycle vlogging and travel.
+            <p className="text-base sm:text-lg max-w-3xl mx-auto leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
+              A curated collection of equipment and tools I personally use and recommend for motorcycle vlogging and travel. Every item listed here has been tested in real-world conditions and is currently part of my gear setup.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm" style={{ color: 'var(--text-muted)' }}>
-              <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5" fill="currentColor" style={{ color: 'var(--accent)' }} viewBox="0 0 20 20">
+            <div className="inline-flex items-center px-4 py-2 rounded-lg bg-green-900/30 border border-green-500/30" style={{ color: '#10b981' }}>
+              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+              </svg>
+              <span className="text-sm font-medium">Some links are affiliate links that support this content</span>
+            </div>
+            <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs" style={{ color: 'var(--text-muted)' }}>
+              <div className="flex items-center space-x-1">
+                <svg className="w-3 h-3" fill="currentColor" style={{ color: 'var(--accent)' }} viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <span>Personally Tested</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5" fill="currentColor" style={{ color: 'var(--accent)' }} viewBox="0 0 20 20">
+              <div className="flex items-center space-x-1">
+                <svg className="w-3 h-3" fill="currentColor" style={{ color: 'var(--accent)' }} viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <span>Real Experience</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5" fill="currentColor" style={{ color: 'var(--accent)' }} viewBox="0 0 20 20">
+              <div className="flex items-center space-x-1">
+                <svg className="w-3 h-3" fill="currentColor" style={{ color: 'var(--accent)' }} viewBox="0 0 20 20">
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span>Updated Regularly</span>
@@ -51,7 +54,7 @@ export default function Affiliates({ affiliates }) {
       </section>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Categories */}
         <div className="space-y-6">
           {affiliates.categories.map((category, index) => (
@@ -130,53 +133,9 @@ export default function Affiliates({ affiliates }) {
           ))}
         </div>
 
-        {/* Affiliate Disclaimer */}
-        <section className="mt-16">
-          <div className="rounded-xl p-6" style={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }}>
-            <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0">
-                <svg className="w-6 h-6" fill="currentColor" style={{ color: 'var(--accent)' }} viewBox="0 0 24 24">
-                  <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-light)' }}>
-                  Affiliate Disclosure
-                </h3>
-                <p className="leading-relaxed text-sm" style={{ color: 'var(--text-muted)' }}>
-                  Some links on this page are affiliate links. If you click on them and make a purchase, I may receive a small commission at no extra cost to you. This helps support the creation of free content on this site. All recommendations are based on genuine personal use and experience.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Contact CTA */}
-        <section className="mt-12 text-center">
-          <div className="rounded-xl p-8" style={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }}>
-            <div className="max-w-md mx-auto">
-              <svg className="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" style={{ color: 'var(--accent)' }} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-              <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--text-light)' }}>
-                Need Gear Recommendations?
-              </h3>
-              <p className="mb-6" style={{ color: 'var(--text-muted)' }}>
-                Have questions about specific gear or need recommendations for your setup?
-              </p>
-              <a href="mailto:singh.motovlogs@gmail.com" className="btn">
-                🔥 Get in Touch
-              </a>
-            </div>
-          </div>
-        </section>
       </main>
 
-      {/* Footer */}
-      <footer className="text-center px-5 py-10 mt-20" style={{ backgroundColor: '#0a0a0a', color: 'var(--text-muted)' }}>
-        <p>"Life begins where the road ends." 🏍️</p>
-        <p>© 2025 <span style={{ color: 'var(--accent)' }}>Singh Moto Vlogs</span></p>
-      </footer>
     </div>
   )
 }

@@ -1,7 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 import Head from 'next/head'
+import Navigation from '../components/Navigation'
 import Affiliates from '../components/Affiliates'
+import Footer from '../components/Footer'
 
 // Server-side function to read gear from JSON file
 export function getStaticProps() {
@@ -52,9 +54,15 @@ export default function AffiliatesPage({ affiliates }) {
         <meta name="twitter:image" content="/profile_pic.jpg" />
       </Head>
 
-      <main className="min-h-screen">
+      {/* Navigation */}
+      <Navigation />
+
+      <main className="min-h-screen pt-16" style={{ backgroundColor: '#0f0f0f', color: '#f5f5f5' }}>
         <Affiliates affiliates={affiliates} />
       </main>
+
+      {/* Footer */}
+      <Footer />
     </>
   )
 }

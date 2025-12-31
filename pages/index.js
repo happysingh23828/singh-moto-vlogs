@@ -1,10 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 import Head from 'next/head'
+import Navigation from '../components/Navigation'
 import Hero from '../components/Hero'
 import Stats from '../components/Stats'
 import About from '../components/About'
 import Links from '../components/Links'
+import Footer from '../components/Footer'
 
 // Server-side function to read stats from JSON file
 export function getStaticProps() {
@@ -52,7 +54,10 @@ export default function HomePage({ stats }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen" style={{ backgroundColor: '#0f0f0f', color: '#f5f5f5' }}>
+      {/* Navigation */}
+      <Navigation />
+
+      <main className="min-h-screen pt-16" style={{ backgroundColor: '#0f0f0f', color: '#f5f5f5' }}>
         {/* Hero Section */}
         <Hero />
 
@@ -66,27 +71,7 @@ export default function HomePage({ stats }) {
         <Links />
 
         {/* Footer */}
-        <footer className="text-center px-5 py-16" style={{ backgroundColor: '#0a0a0a', color: '#b3b3b3' }}>
-          <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <p className="text-lg sm:text-xl italic mb-4 font-medium" style={{ color: '#f5f5f5' }}>
-              "Zindagi ke maze lete raho, warna zindagi tumhare maze legi"
-            </p>
-            <p className="text-base" style={{ color: '#ff4d00' }}>
-              ज़िंदगी के मज़े लेते रहो, वरना ज़िंदगी तुम्हारे मज़े लेगी
-            </p>
-          </div>
-
-            <div className="border-t border-gray-700 pt-8">
-              <p className="text-gray-400 mb-2">
-                © 2025 <span style={{ color: '#ff4d00' }}>Singh Moto Vlogs</span>
-              </p>
-              <p className="text-sm text-gray-500">
-                Built with ❤️ for the motorcycle community
-              </p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </main>
     </>
   )

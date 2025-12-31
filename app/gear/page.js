@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import Navigation from '../../components/Navigation'
 import Affiliates from '../../components/Affiliates'
 
 // Server-side function to read gear from JSON file
@@ -43,8 +44,13 @@ export default async function GearPage() {
   const affiliates = await getAffiliates()
 
   return (
-    <main className="min-h-screen">
-      <Affiliates affiliates={affiliates} />
-    </main>
+    <div>
+      {/* Navigation */}
+      <Navigation />
+
+      <main className="min-h-screen pt-16">
+        <Affiliates affiliates={affiliates} />
+      </main>
+    </div>
   )
 }

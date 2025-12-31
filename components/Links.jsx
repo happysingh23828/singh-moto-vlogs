@@ -36,18 +36,6 @@ const socialLinks = [
     stats: 'Join the community'
   },
   {
-    name: 'GEAR',
-    url: '/gear',
-    icon: (
-      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-      </svg>
-    ),
-    gradient: 'from-orange-500 to-red-500',
-    description: 'Curated gear list with personal recommendations',
-    stats: 'Cameras • Tools • Gear'
-  },
-  {
     name: 'Email',
     url: 'mailto:singh.motovlogs@gmail.com',
     icon: (
@@ -60,6 +48,17 @@ const socialLinks = [
     stats: 'Get in touch'
   }
 ]
+
+// Function to get platform-specific colors
+function getPlatformColor(platform) {
+  const colors = {
+    'YouTube': '#dc2626', // Red
+    'Instagram': '#e4405f', // Instagram pink
+    'Facebook': '#1877f2', // Facebook blue
+    'Email': '#6b7280' // Gray
+  }
+  return colors[platform] || 'var(--accent)'
+}
 
 export default function Links() {
   return (
@@ -75,95 +74,73 @@ export default function Links() {
           </p>
         </div>
 
-        {/* Links Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {/* Compact Links Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
           {socialLinks.map((link, index) => (
             <a
               key={index}
               href={link.url}
               target={link.name !== 'Email' && link.name !== 'GEAR' ? '_blank' : undefined}
               rel={link.name !== 'Email' && link.name !== 'GEAR' ? 'noopener noreferrer' : undefined}
-              className="group block rounded-3xl overflow-hidden transition-all duration-500 hover:scale-105"
+              className="group flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:bg-gray-800/50"
               style={{
                 backgroundColor: '#1a1a1a',
-                border: '1px solid #333',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.3)'
+                border: '1px solid #333'
               }}
             >
-              {/* Header with Accent Color */}
-              <div className="p-6 relative overflow-hidden" style={{ backgroundColor: 'var(--accent)' }}>
-                {/* Background decoration */}
-                <div className="absolute top-0 right-0 w-20 h-20 rounded-full blur-xl opacity-20" style={{ backgroundColor: 'var(--text-light)' }}></div>
-                <div className="absolute bottom-0 left-0 w-16 h-16 rounded-full blur-lg opacity-10" style={{ backgroundColor: 'var(--text-light)' }}></div>
-
-                <div className="relative z-10 flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    {/* Icon */}
-                    <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      {link.icon}
-                    </div>
-
-                    {/* Title and Stats */}
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1">
-                        {link.name}
-                      </h3>
-                      <p className="text-white/90 text-sm font-medium">
-                        {link.stats}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </div>
-                </div>
+              {/* Platform Icon */}
+              <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: getPlatformColor(link.name) }}>
+                {link.icon}
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <p className="mb-4 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold truncate" style={{ color: 'var(--text-light)' }}>
+                    {link.name}
+                  </h3>
+                  <div className="text-sm opacity-75" style={{ color: 'var(--accent)' }}>
+                    {link.stats}
+                  </div>
+                </div>
+                <p className="text-sm mt-1 truncate" style={{ color: 'var(--text-muted)' }}>
                   {link.description}
                 </p>
+              </div>
 
-                {/* Action indicator */}
-                <div className="flex items-center text-sm font-medium">
-                  <span className="px-3 py-1 rounded-full" style={{
-                    backgroundColor: '#2a2a2a',
-                    color: 'var(--text-light)'
-                  }}>
-                    {link.name === 'Email' ? 'Send message' : 'Visit profile'}
-                  </span>
-                </div>
+              {/* Arrow */}
+              <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" style={{ color: getPlatformColor(link.name) }} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </div>
             </a>
           ))}
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <div className="rounded-2xl p-8 max-w-2xl mx-auto" style={{
+        {/* Compact Call to Action */}
+        <div className="text-center mt-12">
+          <div className="inline-flex items-center space-x-6 p-6 rounded-xl" style={{
             backgroundColor: '#1a1a1a',
-            border: '1px solid #333',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.3)'
+            border: '1px solid #333'
           }}>
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: 'var(--accent)' }}>
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" style={{ color: 'var(--text-light)' }} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--accent)' }}>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" style={{ color: 'var(--text-light)' }} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <h3 className="text-lg font-semibold" style={{ color: 'var(--text-light)' }}>
+                  Let's Collaborate!
+                </h3>
+                <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+                  Drop me a message
+                </p>
+              </div>
             </div>
-            <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-light)' }}>
-              Ready to Collaborate?
-            </h3>
-            <p className="mb-6" style={{ color: 'var(--text-muted)' }}>
-              Whether it's brand partnerships, collaborations, or just connecting with a fellow rider,
-              I'd love to hear from you!
-            </p>
             <a href="mailto:singh.motovlogs@gmail.com" className="btn">
-              🔥 Let's Create Something Amazing
+              Contact Me
             </a>
           </div>
         </div>
