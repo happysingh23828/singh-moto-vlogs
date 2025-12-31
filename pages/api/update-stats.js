@@ -1,0 +1,47 @@
+const { updateStats } = require('../../scripts/updateStats');
+
+export default async function handler(req, res) {
+  // Allow both GET (for Vercel cron) and POST requests
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Check if this is a Vercel cron job via query parameter
+  const cronSecret = req.query.cron_secret;
+  const expectedSecret = process.env.CRON_SECRET_KEY;
+
+  const isVercelCron = cronSecret === expectedSecret;
+
+  // For external requests, require Bearer token authentication
+  if (!isVercelCron) {
+    const authHeader = req.headers.authorization;
+
+    if (!expectedSecret) {
+      return res.status(500).json({ error: 'CRON_SECRET_KEY not configured' });
+    }
+
+    if (!authHeader || authHeader !== `Bearer ${expectedSecret}`) {
+      return res.status(401).json({ error: 'Unauthorized - Invalid or missing CRON_SECRET_KEY' });
+    }
+  }
+
+  try {
+    console.log('🔄 Cron job triggered: Updating stats...');
+
+    await updateStats();
+
+    res.status(200).json({
+      success: true,
+      message: 'Stats updated successfully',
+      timestamp: new Date().toISOString()
+    });
+
+  } catch (error) {
+    console.error('❌ Cron job error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+}

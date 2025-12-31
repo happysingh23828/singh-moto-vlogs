@@ -36,6 +36,18 @@ const socialLinks = [
     stats: 'Join the community'
   },
   {
+    name: 'GEAR',
+    url: '/gear',
+    icon: (
+      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      </svg>
+    ),
+    gradient: 'from-orange-500 to-red-500',
+    description: 'Curated gear list with personal recommendations',
+    stats: 'Cameras • Tools • Gear'
+  },
+  {
     name: 'Email',
     url: 'mailto:singh.motovlogs@gmail.com',
     icon: (
@@ -69,8 +81,8 @@ export default function Links() {
             <a
               key={index}
               href={link.url}
-              target={link.name !== 'Email' ? '_blank' : undefined}
-              rel={link.name !== 'Email' ? 'noopener noreferrer' : undefined}
+              target={link.name !== 'Email' && link.name !== 'GEAR' ? '_blank' : undefined}
+              rel={link.name !== 'Email' && link.name !== 'GEAR' ? 'noopener noreferrer' : undefined}
               className="group block bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
               {/* Header with Gradient */}
