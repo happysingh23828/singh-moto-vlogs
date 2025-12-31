@@ -52,19 +52,12 @@ export default function HomePage({ stats }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen">
+      <main className="min-h-screen" style={{ backgroundColor: '#0f0f0f', color: '#f5f5f5' }}>
         {/* Hero Section */}
-        <Hero
-          avatar={stats.youtube.avatar}
-          title={stats.youtube.title}
-        />
+        <Hero />
 
         {/* Stats Section */}
-        <Stats
-          youtube={stats.youtube}
-          instagram={stats.instagram}
-          lastUpdated={stats.lastUpdated}
-        />
+        <Stats stats={stats} />
 
         {/* About Section */}
         <About />
@@ -73,14 +66,25 @@ export default function HomePage({ stats }) {
         <Links />
 
         {/* Footer */}
-        <footer className="bg-gray-900 text-white py-12">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-gray-400 mb-4">
-              © 2025 Singh Moto Vlogs. All rights reserved.
+        <footer className="text-center px-5 py-16" style={{ backgroundColor: '#0a0a0a', color: '#b3b3b3' }}>
+          <div className="max-w-4xl mx-auto">
+          <div className="mb-8">
+            <p className="text-lg sm:text-xl italic mb-4 font-medium" style={{ color: '#f5f5f5' }}>
+              "Zindagi ke maze lete raho, warna zindagi tumhare maze legi"
             </p>
-            <p className="text-sm text-gray-500">
-              Built with ❤️ for the motorcycle community
+            <p className="text-base" style={{ color: '#ff4d00' }}>
+              ज़िंदगी के मज़े लेते रहो, वरना ज़िंदगी तुम्हारे मज़े लेगी
             </p>
+          </div>
+
+            <div className="border-t border-gray-700 pt-8">
+              <p className="text-gray-400 mb-2">
+                © 2025 <span style={{ color: '#ff4d00' }}>Singh Moto Vlogs</span>
+              </p>
+              <p className="text-sm text-gray-500">
+                Built with ❤️ for the motorcycle community
+              </p>
+            </div>
           </div>
         </footer>
       </main>

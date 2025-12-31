@@ -63,14 +63,14 @@ const socialLinks = [
 
 export default function Links() {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <section className="py-20" style={{ backgroundColor: 'var(--bg-dark)' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold gradient-text mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4" style={{ color: 'var(--accent)' }}>
             Connect With Me
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>
             Follow my journey across all platforms and let's connect
           </p>
         </div>
@@ -83,13 +83,18 @@ export default function Links() {
               href={link.url}
               target={link.name !== 'Email' && link.name !== 'GEAR' ? '_blank' : undefined}
               rel={link.name !== 'Email' && link.name !== 'GEAR' ? 'noopener noreferrer' : undefined}
-              className="group block bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              className="group block rounded-3xl overflow-hidden transition-all duration-500 hover:scale-105"
+              style={{
+                backgroundColor: '#1a1a1a',
+                border: '1px solid #333',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.3)'
+              }}
             >
-              {/* Header with Gradient */}
-              <div className={`bg-gradient-to-r ${link.gradient} p-6 relative overflow-hidden`}>
+              {/* Header with Accent Color */}
+              <div className="p-6 relative overflow-hidden" style={{ backgroundColor: 'var(--accent)' }}>
                 {/* Background decoration */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/5 rounded-full blur-lg"></div>
+                <div className="absolute top-0 right-0 w-20 h-20 rounded-full blur-xl opacity-20" style={{ backgroundColor: 'var(--text-light)' }}></div>
+                <div className="absolute bottom-0 left-0 w-16 h-16 rounded-full blur-lg opacity-10" style={{ backgroundColor: 'var(--text-light)' }}></div>
 
                 <div className="relative z-10 flex items-center justify-between">
                   <div className="flex items-center space-x-4">
@@ -120,13 +125,16 @@ export default function Links() {
 
               {/* Content */}
               <div className="p-6">
-                <p className="text-gray-600 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
                   {link.description}
                 </p>
 
                 {/* Action indicator */}
-                <div className="flex items-center text-sm font-medium text-gray-500">
-                  <span className="bg-gray-100 px-3 py-1 rounded-full">
+                <div className="flex items-center text-sm font-medium">
+                  <span className="px-3 py-1 rounded-full" style={{
+                    backgroundColor: '#2a2a2a',
+                    color: 'var(--text-light)'
+                  }}>
                     {link.name === 'Email' ? 'Send message' : 'Visit profile'}
                   </span>
                 </div>
@@ -137,27 +145,25 @@ export default function Links() {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 max-w-2xl mx-auto">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="rounded-2xl p-8 max-w-2xl mx-auto" style={{
+            backgroundColor: '#1a1a1a',
+            border: '1px solid #333',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.3)'
+          }}>
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: 'var(--accent)' }}>
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" style={{ color: 'var(--text-light)' }} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-light)' }}>
               Ready to Collaborate?
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="mb-6" style={{ color: 'var(--text-muted)' }}>
               Whether it's brand partnerships, collaborations, or just connecting with a fellow rider,
               I'd love to hear from you!
             </p>
-            <a
-              href="mailto:singh.motovlogs@gmail.com"
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300 hover:shadow-lg hover:scale-105"
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Let's Create Something Amazing
+            <a href="mailto:singh.motovlogs@gmail.com" className="btn">
+              🔥 Let's Create Something Amazing
             </a>
           </div>
         </div>
