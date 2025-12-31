@@ -3,7 +3,7 @@
   "crons": [
     {
       "path": "/api/update-stats?cron_secret=$CRON_SECRET_KEY",
-      "schedule": "0 0 * * *"
+      "schedule": "30 23 * * *"
     }
   ]
 }
