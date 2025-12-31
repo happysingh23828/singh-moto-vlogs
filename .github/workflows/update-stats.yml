@@ -80,7 +80,7 @@ jobs:
         Updated at: ${{ steps.timestamp.outputs.timestamp }}
         - YouTube subscribers and views
         - Instagram followers and posts"
-        git push origin HEAD:main || git push origin HEAD:master
+        git push origin HEAD:master
 
     - name: Clean up backup
       if: always()
