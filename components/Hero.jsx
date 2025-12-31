@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="hero-bg min-h-screen flex items-center justify-center text-center px-10 py-20">
+    <section className="hero-bg min-h-screen flex items-center justify-end text-center px-10 py-20">
       <div>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wider mb-2">
           Singh Moto Vlogs

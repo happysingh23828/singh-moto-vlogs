@@ -88,7 +88,17 @@
       rgba(0,0,0,0.6),
       rgba(0,0,0,0.9)
     ),
-    url("/home_banner.JPG") center/cover no-repeat;
+    url("/mobile_banner.jpg") center/cover no-repeat;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-bg {
+      background: linear-gradient(
+        rgba(0,0,0,0.4),
+        rgba(0,0,0,0.7)
+      ),
+      url("/home_banner.jpg") center/cover no-repeat;
+    }
   }
 
   .about-section {
