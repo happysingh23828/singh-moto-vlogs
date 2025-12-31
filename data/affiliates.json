@@ -13,28 +13,22 @@
           "url": "https://amzn.to/4fZC5KX"
         },
         {
-          "name": "Bike Maintenance Kit",
-          "description": "Essential tools for regular motorcycle maintenance",
-          "tags": ["Maintenance", "Tools", "DIY"],
-          "url": "https://amzn.to/example-bike-tools"
+          "name": "Tank Bag",
+          "description": "Quick-access storage mounted on fuel tank",
+          "tags": ["Quick Access", "Fuel Tank"],
+          "url": "https://www.amazon.in/dp/B07L4SDK5G"
         },
         {
-          "name": "Chain Cleaner & Lubricant",
-          "description": "Professional-grade chain maintenance products",
-          "tags": ["Chain Care", "Maintenance", "Performance"],
-          "url": "https://amzn.to/example-chain-care"
+          "name": "Tail Bag",
+          "description": "Rear seat storage for longer trips",
+          "tags": ["Rear Storage", "Travel"],
+          "url": "https://amzn.to/4g39jJE"
         },
         {
-          "name": "Exhaust System",
-          "description": "Performance exhaust for better sound and power",
-          "tags": ["Performance", "Sound", "Power"],
-          "url": "https://amzn.to/example-exhaust"
-        },
-        {
-          "name": "Air Filter",
-          "description": "High-performance air filter for better airflow",
-          "tags": ["Performance", "Airflow", "Filter"],
-          "url": "https://amzn.to/example-air-filter"
+          "name": "TopBox",
+          "description": "45L top case with backrest for passenger comfort",
+          "tags": ["45L", "Passenger Comfort"],
+          "url": "https://bandidospitstop.com/collections/jb-racing-top-box-45l-economy-premium/products/jb-racing-top-case-galaxy-x-45l-premium-black-with-back-rest-pad"
         }
       ]
     },
@@ -57,16 +51,16 @@
           "url": "https://amzn.to/3REmYy5"
         },
         {
-          "name": "Rynox H2Go Rain Jacket",
-          "description": "Lightweight rain protection that packs small",
-          "tags": ["Packable", "Lightweight"],
-          "url": "https://amzn.to/46wNBJJ"
-        },
-        {
           "name": "Rynox Riding Pants",
           "description": "Knee armor with stretch panels for comfort",
           "tags": ["CE Certified", "Flexible"],
           "url": "https://amzn.to/3PDgf4O"
+        },
+        {
+          "name": "Rynox H2Go Rain Jacket",
+          "description": "Lightweight rain protection that packs small",
+          "tags": ["Packable", "Lightweight"],
+          "url": "https://amzn.to/46wNBJJ"
         },
         {
           "name": "Riding Gloves",
@@ -125,68 +119,6 @@
           "url": "https://amzn.to/3EVEmXz"
         },
         {
-          "name": "Maono Mic AU-400",
-          "description": "Backup microphone with excellent wind noise reduction",
-          "tags": ["Wind Resistant", "Backup"],
-          "url": "https://amzn.to/3PssySf"
-        },
-        {
-          "name": "Helmet Chin Mount",
-          "description": "Secure camera mount for helmet recording",
-          "tags": ["Secure", "Helmet Mount"],
-          "url": "https://amzn.to/48vYA7W"
-        },
-        {
-          "name": "ActionPro Chin Mount",
-          "description": "Alternative chin mount with quick release",
-          "tags": ["Quick Release", "Alternative"],
-          "url": "https://amzn.to/3vdqw1F"
-        },
-        {
-          "name": "GoPro Mic Adapter",
-          "description": "Adapter for connecting external microphones",
-          "tags": ["Adapter", "Compatibility"],
-          "url": "https://amzn.to/3vkjbgH"
-        },
-        {
-          "name": "Mount Extender Accessories (4 Way Mount)",
-          "description": "Extendable mount system for flexible positioning",
-          "tags": ["Flexible", "Extendable"],
-          "url": "https://amzn.to/3TFyYQr"
-        }
-      ]
-    },
-    {
-      "id": "accessories",
-      "name": "Accessories",
-      "icon": "🎒",
-      "description": "Storage, power, and travel essentials",
-      "items": [
-        {
-          "name": "Tank Bag",
-          "description": "Quick-access storage mounted on fuel tank",
-          "tags": ["Quick Access", "Fuel Tank"],
-          "url": "https://www.amazon.in/dp/B07L4SDK5G"
-        },
-        {
-          "name": "Tail Bag",
-          "description": "Rear seat storage for longer trips",
-          "tags": ["Rear Storage", "Travel"],
-          "url": "https://amzn.to/4g39jJE"
-        },
-        {
-          "name": "TopBox",
-          "description": "45L top case with backrest for passenger comfort",
-          "tags": ["45L", "Passenger Comfort"],
-          "url": "https://bandidospitstop.com/collections/jb-racing-top-box-45l-economy-premium/products/jb-racing-top-case-galaxy-x-45l-premium-black-with-back-rest-pad"
-        },
-        {
-          "name": "MI Power Bank",
-          "description": "Fast-charging portable battery for devices",
-          "tags": ["Fast Charging", "Portable"],
-          "url": "https://amzn.to/3LBerbC"
-        },
-        {
           "name": "Apple iPhone 14 Pro",
           "description": "Primary smartphone for content creation and navigation",
           "tags": ["Content Creation", "Navigation"],
@@ -205,6 +137,18 @@
           "url": "https://amzn.to/3EUR4Wr"
         },
         {
+          "name": "MI Power Bank",
+          "description": "Fast-charging portable battery for devices",
+          "tags": ["Fast Charging", "Portable"],
+          "url": "https://amzn.to/3LBerbC"
+        },
+        {
+          "name": "Helmet Chin Mount",
+          "description": "Secure camera mount for helmet recording",
+          "tags": ["Secure", "Helmet Mount"],
+          "url": "https://amzn.to/48vYA7W"
+        },
+        {
           "name": "Flexible Gorilla Tripod",
           "description": "Bendable tripod for creative angles",
           "tags": ["Flexible", "Creative"],
@@ -217,10 +161,34 @@
           "url": "https://amzn.to/45cx3ph"
         },
         {
+          "name": "GoPro Mic Adapter",
+          "description": "Adapter for connecting external microphones",
+          "tags": ["Adapter", "Compatibility"],
+          "url": "https://amzn.to/3vkjbgH"
+        },
+        {
+          "name": "Maono Mic AU-400",
+          "description": "Backup microphone with excellent wind noise reduction",
+          "tags": ["Wind Resistant", "Backup"],
+          "url": "https://amzn.to/3PssySf"
+        },
+        {
           "name": "Ulanzi Case for GoPro",
           "description": "Protective case with easy access",
           "tags": ["Protective", "Quick Access"],
           "url": "https://amzn.to/492Zdom"
+        },
+        {
+          "name": "ActionPro Chin Mount",
+          "description": "Alternative chin mount with quick release",
+          "tags": ["Quick Release", "Alternative"],
+          "url": "https://amzn.to/3vdqw1F"
+        },
+        {
+          "name": "Mount Extender Accessories (4 Way Mount)",
+          "description": "Extendable mount system for flexible positioning",
+          "tags": ["Flexible", "Extendable"],
+          "url": "https://amzn.to/3TFyYQr"
         }
       ]
     }
