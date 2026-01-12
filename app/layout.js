@@ -1,4 +1,5 @@
 import './globals.css'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata = {
   title: 'Happy Singh - Digital Creator | Motorcycle Travel Vlogs',
@@ -98,6 +99,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   )
