@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 function formatNumber(num) {
   if (num >= 1000000) {
     return (num / 1000000).toFixed(1) + 'M'
@@ -14,6 +16,23 @@ function formatNumberWithCommas(num) {
 }
 
 export default function Stats({ stats }) {
+  const [formattedDate, setFormattedDate] = useState('Loading...');
+
+  useEffect(() => {
+    if (stats?.lastUpdated) {
+      const date = new Date(stats.lastUpdated);
+      const formatted = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      setFormattedDate(formatted);
+    } else {
+      setFormattedDate('Never');
+    }
+  }, [stats?.lastUpdated]);
 
   const youtubeStats = [
     {
@@ -180,6 +199,17 @@ export default function Stats({ stats }) {
               </div>
             </div>
           </a>
+        </div>
+
+        {/* Last Updated */}
+        <div className="text-center mt-8">
+          <p className="text-xs px-3 py-1 rounded-md font-medium inline-block" style={{
+            color: 'var(--accent)',
+            backgroundColor: 'var(--bg-primary)',
+            border: '1px solid var(--accent)'
+          }}>
+            Last updated: {formattedDate}
+          </p>
         </div>
       </div>
     </section>
