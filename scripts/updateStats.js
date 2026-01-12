@@ -58,6 +58,7 @@ async function fetchYouTubeStats() {
         title: channel.snippet.title,
         avatar: channel.snippet.thumbnails.high.url,
         subscribers: parseInt(channel.statistics.subscriberCount) || 0,
+        videos: parseInt(channel.statistics.videoCount) || 0,
         views: parseInt(channel.statistics.viewCount) || 0
       };
     }
@@ -69,6 +70,7 @@ async function fetchYouTubeStats() {
       title: "Singh Moto Vlogs",
       avatar: "https://yt3.googleusercontent.com/default-avatar.jpg",
       subscribers: 0,
+      videos: 0,
       views: 0
     };
   }
@@ -104,36 +106,35 @@ async function fetchInstagramStats() {
 
       console.log(`Total media items fetched: ${allMedia.length}`);
 
-      // Calculate total views by calling insights API for each video
-      console.log('Fetching insights for video content...');
-      const videos = allMedia.filter(post => post.media_type === 'VIDEO'); // Get all videos
-      console.log(`Found ${videos.length} video posts to check`);
+      // Calculate total views by calling insights API for all media (videos and carousels)
+      console.log('Fetching insights for all media content...');
+      const mediaWithPotentialViews = allMedia.filter(post =>
+        post.media_type === 'VIDEO' || post.media_type === 'CAROUSEL_ALBUM'
+      ); // Get videos and carousels
+      console.log(`Found ${mediaWithPotentialViews.length} media posts to check (videos + carousels)`);
 
-      const videoPromises = videos.map(async (post) => {
+      const mediaPromises = mediaWithPotentialViews.slice(0, 50).map(async (post) => {
         try {
-          console.log(`Checking insights for video: ${post.id}`);
+          console.log(`Checking insights for ${post.media_type}: ${post.id}`);
           const insightsUrl = `https://graph.instagram.com/${post.id}/insights?metric=views&access_token=${META_GRAPH_TOKEN}`;
-          console.log(`Insights URL: ${insightsUrl.replace(META_GRAPH_TOKEN, 'TOKEN_HIDDEN')}`);
 
           const insightsData = await makeRequest(insightsUrl);
-          console.log(`Insights response for ${post.id}:`, JSON.stringify(insightsData, null, 2));
 
           if (insightsData.data && insightsData.data[0] && insightsData.data[0].values && insightsData.data[0].values[0]) {
             const views = parseInt(insightsData.data[0].values[0].value);
-            console.log(`Video ${post.id}: ${views} views`);
+            console.log(`${post.media_type} ${post.id}: ${views} views`);
             return views;
           }
-          console.log(`No view data found for video ${post.id}`);
           return 0;
         } catch (error) {
-          console.log(`Failed to get insights for video ${post.id}:`, error.message);
+          // Silently handle individual post errors
           return 0;
         }
       });
 
-      const videoViews = await Promise.all(videoPromises);
-      totalViews = videoViews.reduce((sum, views) => sum + views, 0);
-      console.log(`Final total views: ${totalViews}`);
+      const mediaViews = await Promise.all(mediaPromises);
+      totalViews = mediaViews.reduce((sum, views) => sum + views, 0);
+      console.log(`Final total views (all media): ${totalViews}`);
 
       console.log(`Total Instagram views calculated: ${totalViews}`);
 
@@ -142,9 +143,13 @@ async function fetchInstagramStats() {
       totalViews = 0;
     }
 
+    // Count video content
+    const videoCount = allMedia.filter(post => post.media_type === 'VIDEO').length;
+
     return {
       followers: accountData.followers_count || 0,
       posts: accountData.media_count || 0,
+      videos: videoCount,
       views: totalViews
     };
   } catch (error) {
@@ -179,8 +184,8 @@ async function updateStats() {
     // Write to file
     fs.writeFileSync(STATS_FILE, JSON.stringify(updatedStats, null, 2));
     console.log('✅ Stats updated successfully!');
-    console.log('📊 YouTube:', youtubeData.subscribers, 'subscribers,', youtubeData.views, 'views');
-    console.log('📸 Instagram:', instagramData.followers, 'followers,', instagramData.posts, 'posts,', instagramData.views, 'total views');
+    console.log('📊 YouTube:', youtubeData.subscribers, 'subscribers,', youtubeData.videos, 'videos,', youtubeData.views, 'views');
+    console.log('📸 Instagram:', instagramData.followers, 'followers,', instagramData.posts, 'posts,', instagramData.videos, 'videos,', instagramData.views, 'total views');
 
   } catch (error) {
     console.error('❌ Error updating stats:', error.message);

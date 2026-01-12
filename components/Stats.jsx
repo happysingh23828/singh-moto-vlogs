@@ -103,7 +103,7 @@ export default function Stats({ stats }) {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold" style={{ color: 'var(--text-light)' }}>YouTube</h3>
-                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Moto Adventures</p>
+                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{formatNumberWithCommas(stats?.youtube?.videos || 0)} videos</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -157,7 +157,7 @@ export default function Stats({ stats }) {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold" style={{ color: 'var(--text-light)' }}>Instagram</h3>
-                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Daily Stories</p>
+                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{formatNumberWithCommas(stats?.instagram?.posts || 0)} posts</p>
                   </div>
                 </div>
                 <div className="text-right">
