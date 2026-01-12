@@ -68,7 +68,7 @@ export default function HomePage({ stats }) {
         <About />
 
         {/* Links Section */}
-        <Links />
+        <Links stats={stats} />
 
         {/* Footer */}
         <Footer />
